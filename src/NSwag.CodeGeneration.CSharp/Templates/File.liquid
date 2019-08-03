@@ -96,11 +96,14 @@ namespace {{ Namespace }}
         public int StatusCode { get; private set; }
 
         public System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IEnumerable<string>> Headers { get; private set; }
+
+		public string Text { get; private set; }
         
-        public {{ responseClassName }}(int statusCode, System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IEnumerable<string>> headers) 
+        public {{ responseClassName }}(int statusCode, System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IEnumerable<string>> headers, string text = null) 
         {
             StatusCode = statusCode; 
             Headers = headers;
+			Text = text;
         }
     }
 
@@ -109,8 +112,8 @@ namespace {{ Namespace }}
     {
         public TResult Result { get; private set; }
         
-        public {{ responseClassName }}(int statusCode, System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IEnumerable<string>> headers, TResult result) 
-            : base(statusCode, headers)
+        public {{ responseClassName }}(int statusCode, System.Collections.Generic.IReadOnlyDictionary<string, System.Collections.Generic.IEnumerable<string>> headers, TResult result, string text = null) 
+            : base(statusCode, headers, text)
         {
             Result = result;
         }
